@@ -26,7 +26,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'Init project', // Load a custom template (lodash by default)
+			title: 'Init project', 
 			template: 'public/index.html',
 		}),
 		new MiniCssExtractPlugin({
