@@ -50,7 +50,7 @@ export class Tesla extends ElectroCar {
 	}
 }
 
-export class Lexus extends HybridCar {
+export class Lexus extends PetrolCar {
 	constructor(name: string, public price: number) {
 		super(name);
 	}

@@ -1,16 +1,17 @@
-import { Car, KIA } from './classes';
-import { capacity, pricing } from './data';
-import { Capacity, Pricing } from './types';
+import { BYD, Car, KIA, Lexus, Tesla } from "./classes";
+import { capacity, pricing } from "./data";
+import { Capacity, Pricing } from "./types";
 
 class Parking<T extends Car> {
 	public cars: T[] = [];
 	public profit: number = 0;
 	private id = 1;
+
 	constructor(public name: string, public capacity: Capacity, public pricing: Pricing) {}
 
 	enterCar(car: T) {
 		const isAreaExist = this.capacity[car.type] !== 0;
-		if (!isAreaExist) throw new Error('Parking is full ❌');
+		if (!isAreaExist) throw new Error("Parking is full ❌");
 
 		this.capacity[car.type]--;
 		car.setId(`${this.id++}`);
@@ -32,8 +33,12 @@ class Parking<T extends Car> {
 
 	calculateProfitThisCar(car: T): number {
 		const diff = new Date().getSeconds() - car.getEnterTime().getSeconds();
+
+		console.log(`${diff} sekund`);
 		const priceOfPerSecond = 10;
 		const total = diff * priceOfPerSecond;
+		console.log(`${total}$ boldi`);
+
 		return total;
 	}
 
@@ -42,10 +47,37 @@ class Parking<T extends Car> {
 	}
 }
 
-const parking = new Parking('Sebzor Parking', capacity, pricing);
+const parking = new Parking("Sebzor Parking", capacity, pricing);
 
-const kia = new KIA('kia k5', 50000);
+const kia = new KIA("kia k5", 50000);
+
+console.log(kia);
+
 parking.enterCar(kia);
 setTimeout(() => {
 	parking.logoutCar(kia.getId());
-}, 2000);
+}, 1000);
+console.log("-----------");
+
+const lada = new BYD("BYD", 50000);
+console.log(lada);
+parking.enterCar(lada);
+setTimeout(() => {
+	parking.logoutCar(lada.getId());
+}, 1000);
+console.log("-----------");
+
+const lala = new Lexus("Tesla", 50000);
+console.log(lala);
+parking.enterCar(lala);
+setTimeout(() => {
+	parking.logoutCar(lala.getId());
+}, 1000);
+console.log("-----------");
+
+const lala2 = new Lexus("Tesla2", 50000);
+console.log(lala2);
+parking.enterCar(lala2);
+setTimeout(() => {
+	parking.logoutCar(lala2.getId());
+}, 1000);
