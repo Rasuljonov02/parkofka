@@ -14,7 +14,7 @@ export class Parking<T extends Car> {
 
 	enterCar(car: T) {
 		const isAreaExist = this.capacity[car.type] !== 0;
-		if (!isAreaExist) throw new Error("Parking is full ❌");
+		if (!isAreaExist) console.error("Parking is full ❌");
 
 		this.capacity[car.type]--;
 		car.setId(`${this.id++}`);
@@ -24,7 +24,7 @@ export class Parking<T extends Car> {
 
 	logoutCar(carId: string) {
 		const carIdx = this.cars.findIndex((c) => c.getId() === carId);
-		if (carIdx === -1) throw new Error(`Car not entered with id ${carId}`);
+		// if (carIdx === -1)  console.error(`Car not entered with id ${carId}`);
 
 		const car = this.cars[carIdx];
 		const profitOfThisCar = this.calculateProfitThisCar(car);
@@ -33,17 +33,28 @@ export class Parking<T extends Car> {
 		this.capacity[car.type]++;
 		this.cars.splice(carIdx, 1);
 	}
-
 	calculateProfitThisCar(car: T): number {
-		const diff = new Date().getSeconds() - car.getEnterTime().getSeconds();
+		if (!car) {
+						console.error("Car is undefined");
+						return 0;
+		}
 
-		console.log(`${diff} sekund`);
+		const enterTime = car.getEnterTime();
+		if (!enterTime) {
+						console.error("Enter time is undefined for the car");
+						return 0;
+		}
+
+		const diff = new Date().getSeconds() - enterTime.getSeconds();
+
+		console.log(`${diff} seconds`);
 		const priceOfPerSecond = 10;
 		const total = diff * priceOfPerSecond;
-		console.log(`${total}$ boldi`);
+		console.log(`${total}$ earned`);
 
 		return total;
-	}
+}
+
 
 	calculateTotalProfit() {
 		return this.profit;
@@ -53,7 +64,7 @@ export class Parking<T extends Car> {
 export const parking = new Parking("Sebzor Parking", capacity, pricing);
 
 
-const kia = new KIA("kia k5", 50000);
+// const kia = new KIA("kia k5", 50000);
 
 
 // const lada = new BYD("BYD", 50000);

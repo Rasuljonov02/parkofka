@@ -2,11 +2,7 @@ import { parking, Parking } from "./index";
 import { KIA, Lexus, Tesla } from "./classes";
 
 const electrCarAll: NodeListOf<HTMLElement> = document.querySelectorAll(".electrCar");
-const electrCarlar1: HTMLDListElement = document.querySelector(".electrCarlar1")!;
-
-function isParkingFull() {
-	return electrCarlar1.children.length === 2;
-}
+const electrCarlar11: HTMLDListElement = document.querySelector(".electrCarlar1")!;
 
 electrCarAll.forEach((gaz) => {
 	gaz.addEventListener("click", () => {
@@ -25,16 +21,43 @@ function parchiz(name: string) {
 		return;
 	}
 
-	const electrCarAll = new Tesla(name, 50000);
-	parking.enterCar(electrCarAll);
-
-	setTimeout(() => {
-		parking.logoutCar(electrCarAll.getId());
-		console.log("-----------");
-	}, 1000);
+	const electrCar = new Tesla(name, 50000);
+	parking.enterCar(electrCar);
 
 	const h1: HTMLParagraphElement = document.createElement("h1");
-	h1.innerText = `${name} `;
-	h1.className = "gazcar";
-	electrCarlar1.appendChild(h1);
+h1.className = "electrcarchiz";
+h1.dataset.carId = electrCar.getId();
+electrCarlar11.appendChild(h1);
+
+	// Start timer
+	let tamer = 0;
+	const updateTimer = setInterval(() => {
+		tamer++;
+		const minutes = Math.floor(tamer / 60);
+		const seconds = tamer % 60;
+		const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+		h1.innerText = `${name} - Parked for ${formattedTime}`;
+	}, 1000);
+	const electrcarchiz: NodeListOf<HTMLElement> = document.querySelectorAll(".electrcarchiz");
+
+    electrcarchiz.forEach((gap) => {
+        gap.addEventListener("click", () => {
+            const carId = gap.dataset.carId;
+            if (carId !== undefined) {
+
+                clearInterval(updateTimer);
+                parking.logoutCar(carId);
+                h1.innerText = `${name} - Logged Out `;
+																gap.remove();
+                console.log("-----------");
+            } else {
+                console.error("Car ID is undefined");
+            }
+        });
+    });
+}
+
+const electrCarlar1: NodeListOf<HTMLElement> = document.querySelectorAll(".electrcarchiz")!;
+function isParkingFull() {
+	return electrCarlar11.children.length === 2;
 }

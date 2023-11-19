@@ -1,40 +1,64 @@
+
 import { parking, Parking } from "./index";
-import { KIA, Lexus } from "./classes";
+import { KIA, Lexus, Tesla } from "./classes";
 
-const gibridCar: NodeListOf<HTMLElement> = document.querySelectorAll(".gibridCar");
-const gibridCarlar1: HTMLDListElement = document.querySelector(".gibridCarlar1")!;
+const electrCarAll: NodeListOf<HTMLElement> = document.querySelectorAll(".gibridCar");
+const electrCarlar11: HTMLDListElement = document.querySelector(".gibridCarlar1")!;
 
-function isParkingFull() {
-	return gibridCarlar1.children.length === 2;
-}
-
-gibridCar.forEach((gaz) => {
+electrCarAll.forEach((gaz) => {
 	gaz.addEventListener("click", () => {
-					const gazValue = gaz.textContent?.trim();
-					if (gazValue && !isParkingFull()) {
-									parchiz(gazValue);
-									gaz.remove();
-									console.log(gazValue);
-					}
+		const gazValue = gaz.textContent?.trim();
+		if (gazValue && !isParkingFull()) {
+			parchiz(gazValue);
+			gaz.remove();
+			console.log(gazValue);
+		}
 	});
 });
 
 function parchiz(name: string) {
 	if (isParkingFull()) {
-					console.log("Parking is full ❌");
-					return;
+		console.log("Parking is full ❌");
+		return;
 	}
 
-	const gibridCar = new KIA(name, 50000);
-	parking.enterCar(gibridCar);
-
-	setTimeout(() => {
-					parking.logoutCar(gibridCar.getId());
-					console.log("-----------");
-	}, 1000);
+	const electrCar = new Tesla(name, 50000);
+	parking.enterCar(electrCar);
 
 	const h1: HTMLParagraphElement = document.createElement("h1");
-	h1.innerText = `${name} `;
-	h1.className = "gazcar";
-	gibridCarlar1.appendChild(h1);
+h1.className = "gibridcarchizish";
+h1.dataset.carId = electrCar.getId();
+electrCarlar11.appendChild(h1);
+
+	// Start timer
+	let tamer = 0;
+	const updateTimer = setInterval(() => {
+		tamer++;
+		const minutes = Math.floor(tamer / 60);
+		const seconds = tamer % 60;
+		const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+		h1.innerText = `${name} - Parked for ${formattedTime}`;
+	}, 1000);
+	const gazcarchizish: NodeListOf<HTMLElement> = document.querySelectorAll(".gazcarchizish");
+
+    gazcarchizish.forEach((gap) => {
+        gap.addEventListener("click", () => {
+            const carId = gap.dataset.carId;
+            if (carId !== undefined) {
+
+                clearInterval(updateTimer);
+                parking.logoutCar(carId);
+                h1.innerText = `${name} - Logged Out `;
+																gap.remove();
+                console.log("-----------");
+            } else {
+                console.error("Car ID is undefined");
+            }
+        });
+    });
+}
+
+const electrCarlar1: NodeListOf<HTMLElement> = document.querySelectorAll(".gazcarchizish")!;
+function isParkingFull() {
+	return electrCarlar11.children.length === 2;
 }

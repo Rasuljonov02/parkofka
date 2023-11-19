@@ -1,6 +1,8 @@
 * {
 	margin: 0;
 	padding: 0;
+	user-select: none;
+
 }
 
 body {
@@ -88,7 +90,46 @@ body {
 	margin: 20px;
 	color: white;
 }
-
+.electrcarchiz{
+	width: 190px;
+	background-color: aquamarine;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin: 20px;
+	color: white;
+}
+.gibridcarchiz{
+	width: 190px;
+	background-color: aquamarine;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin: 20px;
+	color: white;
+}
+.gibridcarchizish{
+	width: 190px;
+	background-color: aquamarine;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin: 20px;
+	color: white;
+}
+.gazcarchizish{
+	width: 190px;
+	background-color: aquamarine;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin: 20px;
+	color: white;
+}
 .electrCarlar1 {
 	display: flex;
 	flex-direction: column;
