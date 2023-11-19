@@ -1,5 +1,5 @@
 import "./main.css";
-import "./chiz";
+import "./chiz.ts";
 
 import { BYD, Car, KIA, Lexus, Tesla } from "./classes";
 import { capacity, pricing } from "./data";
@@ -37,10 +37,10 @@ export class Parking<T extends Car> {
 	calculateProfitThisCar(car: T): number {
 		const diff = new Date().getSeconds() - car.getEnterTime().getSeconds();
 
-		// console.log(`${diff} sekund`);
+		console.log(`${diff} sekund`);
 		const priceOfPerSecond = 10;
 		const total = diff * priceOfPerSecond;
-		// console.log(`${total}$ boldi`);
+		console.log(`${total}$ boldi`);
 
 		return total;
 	}
@@ -56,25 +56,25 @@ export const parking = new Parking("Sebzor Parking", capacity, pricing);
 const kia = new KIA("kia k5", 50000);
 
 
-const lada = new BYD("BYD", 50000);
-// console.log(lada);
-parking.enterCar(lada);
-setTimeout(() => {
-	parking.logoutCar(lada.getId());
-}, 1000);
-console.log("-----------");
+// const lada = new BYD("BYD", 50000);
+// // console.log(lada);
+// parking.enterCar(lada);
+// setTimeout(() => {
+// 	parking.logoutCar(lada.getId());
+// }, 1000);
+// console.log("-----------");
 
-const lala = new Lexus("Tesla", 50000);
-// console.log(lala);
-parking.enterCar(lala);
-setTimeout(() => {
-	parking.logoutCar(lala.getId());
-}, 1000);
-console.log("-----------");
+// const lala = new Lexus("Tesla", 50000);
+// // console.log(lala);
+// parking.enterCar(lala);
+// setTimeout(() => {
+// 	parking.logoutCar(lala.getId());
+// }, 1000);
+// console.log("-----------");
 
-const lala2 = new Lexus("Tesla2", 50000);
-// console.log(lala2);
-parking.enterCar(lala2);
-setTimeout(() => {
-	parking.logoutCar(lala2.getId());
-}, 1000);
+// const lala2 = new Lexus("Tesla2", 50000);
+// // console.log(lala2);
+// parking.enterCar(lala2);
+// setTimeout(() => {
+// 	parking.logoutCar(lala2.getId());
+// }, 1000);

@@ -1,22 +1,13 @@
 import { parking, Parking } from "./index";
-import { capacity, pricing } from "./data";
-
-
-
-import {  Car } from "./classes";
-
+import { Lexus } from "./classes";
 import "./electrCarAll";
 import "./gibridCarlar";
 
-const gazcarAll: NodeListOf<HTMLElement> = document.querySelectorAll(".gazcar");
+const gazcarAll: NodeListOf<HTMLElement> = document.querySelectorAll(".gazcar")!;
 const pushgazCarlar1: HTMLDListElement = document.querySelector(".gazCarlar1")!;
 
 function isParkingFull() {
-    if (pushgazCarlar1.children.length === 2) {
-        console.log("Parking is full ❌");
-        return true;
-    }
-    return false;
+    return pushgazCarlar1.children.length === 2;
 }
 
 gazcarAll.forEach((gaz) => {
@@ -32,27 +23,20 @@ gazcarAll.forEach((gaz) => {
 
 function parchiz(name: string) {
     if (isParkingFull()) {
+        console.log("Parking is full ❌");
         return;
     }
 
-    const parkingInstance = new Parking("Sebzor Parking", capacity, pricing);
-    // const car = parkingInstance.getCarById(name);
+    const lexusCar = new Lexus(name, 50000);
+    parking.enterCar(lexusCar);
 
-    // if (car) {
-    //     parkingInstance.enterCar(car);
-    //     setTimeout(() => {
-    //         parkingInstance.logoutCar(car.getId());
-    //     }, 1000);
-    //     console.log("-----------");
+    setTimeout(() => {
+        parking.logoutCar(lexusCar.getId());
+        console.log("-----------");
+    }, 1000);
 
-        const h1: HTMLParagraphElement = document.createElement("h1");
-        h1.innerText = `${name} `;
-        h1.className = "gazcar";
-        pushgazCarlar1.appendChild(h1);
-    }
-// }
-
-
-// class BYD implements Car {
-
-// }
+    const h1: HTMLParagraphElement = document.createElement("h1");
+    h1.innerText = `${name} `;
+    h1.className = "gazcar";
+    pushgazCarlar1.appendChild(h1);
+}

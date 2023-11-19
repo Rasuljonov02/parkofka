@@ -1,33 +1,37 @@
-import { parking } from "./index";
+import { parking, Parking } from "./index";
+import { KIA, Lexus, Tesla } from "./classes";
 
 const electrCarAll: NodeListOf<HTMLElement> = document.querySelectorAll(".electrCar");
 const electrCarlar1: HTMLDListElement = document.querySelector(".electrCarlar1")!;
 
-function boshqajoyyoq() {
-	if (electrCarlar1.children.length === 2) {
-		console.log("Parking is full ❌");
-		return false;
-	}
-	return true;
+function isParkingFull() {
+	return electrCarlar1.children.length === 2;
 }
 
 electrCarAll.forEach((gaz) => {
 	gaz.addEventListener("click", () => {
 		const gazValue = gaz.textContent?.trim();
-		if (gazValue) {
-			if (boshqajoyyoq()) {
-				parchiz(gazValue);
-				gaz.remove();
-				console.log(gazValue);
-			}
+		if (gazValue && !isParkingFull()) {
+			parchiz(gazValue);
+			gaz.remove();
+			console.log(gazValue);
 		}
 	});
 });
 
 function parchiz(name: string) {
-	if (!boshqajoyyoq()) {
+	if (isParkingFull()) {
+		console.log("Parking is full ❌");
 		return;
 	}
+
+	const electrCarAll = new Tesla(name, 50000);
+	parking.enterCar(electrCarAll);
+
+	setTimeout(() => {
+		parking.logoutCar(electrCarAll.getId());
+		console.log("-----------");
+	}, 1000);
 
 	const h1: HTMLParagraphElement = document.createElement("h1");
 	h1.innerText = `${name} `;

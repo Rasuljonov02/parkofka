@@ -14,22 +14,44 @@ body {
 	flex-direction: column;
 	justify-content: space-around;
 }
-.car,
+.car {
+	width: 100%;
+	display: flex;
+	gap: 5px;
+	justify-content: space-around;
+}
 .carParkofka {
 	width: 100%;
 	display: flex;
 	gap: 5px;
 	justify-content: space-around;
 }
+.electrCarlar {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 5px 10px;
 
-.electrCarlar,
-.gibridCarlar,
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(54, 56, 56);
+}
+.gibridCarlar {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 5px 10px;
+
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(54, 56, 56);
+}
 .gazCarlar {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	padding: 5px 10px;
-	width: 200px;
+
 	align-items: center;
 	justify-content: center;
 	background-color: rgb(54, 56, 56);
@@ -67,15 +89,63 @@ body {
 	color: white;
 }
 
-.electrCarlar1,
-.gibridCarlar1,
+.electrCarlar1 {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	background-color: rgb(54, 56, 56);
+
+	width: auto;
+	align-items: center;
+	justify-content: center;
+}
 .gazCarlar1 {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	/* padding: 5px 10px; */
+	background-color: rgb(54, 56, 56);
+
 	width: auto;
 	align-items: center;
 	justify-content: center;
+}
+.gibridCarlar1 {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 	background-color: rgb(54, 56, 56);
+
+	width: auto;
+	align-items: center;
+	justify-content: center;
+}
+h2 {
+	color: white;
+}
+.div {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	color: white;
+
+	align-items: center;
+	justify-content: center;
+}
+.div1 {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	color: white;
+
+	align-items: center;
+	justify-content: center;
+}
+.div2 {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	color: white;
+
+	align-items: center;
+	justify-content: center;
 }
